@@ -1,0 +1,2 @@
+class Twitbot < ApplicationRecord
+end

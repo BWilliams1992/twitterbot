@@ -1,0 +1,19 @@
+<h1>Listing Twitterbots </h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Notes</th>
+    <th></th>
+  </tr>
+
+  <% @twitbots.each do |twitbot| %>
+    <tr>
+      <td><%= twitbot.title %></td>
+      <td><%= twitbot.notes %></td>
+      <td><%= link_to 'Show', twitbot_path(twitbot) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'New', new_twitbot_path %>

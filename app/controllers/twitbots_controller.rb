@@ -16,7 +16,8 @@ class TwitbotsController < ApplicationController
     @twitbot =Twitbot.find (params[:id])
   end
   def create
-    @twitbot = Twitbot.new(twitbot_params)
+    @user = current_user
+    @twitbot = @user.twitbots.build(twitbot_params)
 
     if @twitbot.save
     redirect_to @twitbot

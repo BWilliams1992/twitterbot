@@ -4,7 +4,7 @@
   <tr>
     <th>Title</th>
     <th>Notes</th>
-    <th></th>
+    <th colspan="3"></th>
   </tr>
 
   <% @twitbots.each do |twitbot| %>
@@ -12,6 +12,8 @@
       <td><%= twitbot.title %></td>
       <td><%= twitbot.notes %></td>
       <td><%= link_to 'Show', twitbot_path(twitbot) %></td>
+      <td><%= link_to 'Edit', edit_twitbot_path(twitbot) %></td>
+      <td><%= link_to 'Delete', twitbot_path(twitbot), method: :delete, data: { confirm: 'Are you sure?'} %></td>
     </tr>
   <% end %>
 </table>

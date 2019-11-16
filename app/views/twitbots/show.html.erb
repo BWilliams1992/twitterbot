@@ -9,6 +9,9 @@
   <strong>Notes:</strong>
   <%= @twitbot.notes %>
 </p>
+<h2>Tweets</h2>
+<%= render @twitbot.tweets %> 
+<%= render 'tweets/form' %>
 
 <%= link_to 'Back', twitbots_path %>
 <%= link_to 'Edit', edit_twitbot_path %>

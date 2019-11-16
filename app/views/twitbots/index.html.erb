@@ -8,14 +8,20 @@
   </tr>
 
   <% @twitbots.each do |twitbot| %>
-    <tr>
-      <td><%= twitbot.title %></td>
-      <td><%= twitbot.notes %></td>
-      <td><%= link_to 'Show', twitbot_path(twitbot) %></td>
-      <td><%= link_to 'Edit', edit_twitbot_path(twitbot) %></td>
-      <td><%= link_to 'Delete', twitbot_path(twitbot), method: :delete, data: { confirm: 'Are you sure?'} %></td>
-    </tr>
-  <% end %>
+    <% if can? :show, twitbot %>
+      <tr>
+        <td><%= twitbot.title %></td>
+        <td><%= twitbot.notes %></td>
+        <td><%= link_to 'Show', twitbot_path(twitbot) %></td>
+        <% if can? :edit, twitbot %>
+          <td><%= link_to 'Edit', edit_twitbot_path(twitbot) %></td>
+        <% end %>
+        <% if can? :destroy, twitbot %>
+        <td><%= link_to 'Delete', twitbot_path(twitbot), method: :delete, data: { confirm: 'Are you sure?'} %></td>
+        <% end %>
+      </tr>
+      <% end %>
+    <% end %>
 </table>
 
 <%= link_to 'New', new_twitbot_path %>

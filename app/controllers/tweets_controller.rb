@@ -18,7 +18,6 @@ class TweetsController < ApplicationController
       else
         next
       end
-      puts @is_dupe.to_s + "<<<< HELLO LOOK HERE IS WHAT U WANNA CHECK <<<<<<"
     end
     return @is_dupe
   end
@@ -30,6 +29,7 @@ class TweetsController < ApplicationController
       @tweet = @twitbot.tweets.create(tweet_params)
       redirect_to twitbot_path(@twitbot)
     else
+      flash[:notice] = "Duplicate tweet detected!"
       redirect_to twitbot_path(@twitbot)
     end
   end

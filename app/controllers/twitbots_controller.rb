@@ -23,8 +23,8 @@ class TwitbotsController < ApplicationController
     @twitbot = @user.twitbots.build(twitbot_params)
     @twitbot.save
 
-    array = CSV.read(@twitbot.spreadsheet_path)
-    array.each do |item|
+    @array = CSV.read(@twitbot.spreadsheet_path)
+    @array.each do |item|
       @twitbot.tweets.build(:content => item.join)
     end
 

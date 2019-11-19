@@ -52,7 +52,11 @@ class TwitbotsController < ApplicationController
     redirect_to twitbots_path
   end
 
-
+  def send_tweet
+    @twitbot = Twitbot.find(params[:id])
+    @tweet = @twitbot.tweet(params[:tweet_id])
+    client.update(@tweet.content)
+  end
 
     private
       def twitbot_params

@@ -1,2 +1,3 @@
 <%= tweet.content %>
 <%= link_to 'Delete', [tweet.twitbot, tweet], method: :delete, data: { confirm: 'Are you sure?'} %>
+<%= link_to 'Send Tweet', twitbot_tweet_send_tweet_path(tweet.twitbot.id, tweet.id) %> <br />

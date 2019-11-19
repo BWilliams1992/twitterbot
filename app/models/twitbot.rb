@@ -6,4 +6,5 @@ class Twitbot < ApplicationRecord
   def spreadsheet_path
     ActiveStorage::Blob.service.path_for(spreadsheet.key)
   end
+
 end

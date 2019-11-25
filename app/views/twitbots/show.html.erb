@@ -1,18 +1,42 @@
-<h1>Twitterbot</h1>
+<div class="row">
+  <div class="col">
+    <h1><%=@twitbot.title %></h1>
 
-<p>
-  <strong>Title:</strong>
-  <%= @twitbot.title %>
-</p>
+    <p>
+      <strong>Notes:</strong>
+      <%= @twitbot.notes %>
+    </p>
 
-<p>
-  <strong>Notes:</strong>
-  <%= @twitbot.notes %>
-</p>
-<h2>Tweets</h2>
-<%= render @twitbot.tweets %>
+  </div>
+</div>
 
-<%= render 'tweets/form' %>
+<div class="row">
+  <div class="col">
+    <h3>Unused</h3>
+      <% @twitbot.tweets.each do |tweet| %>
+        <% if tweet.used == false %>
+          <%= render tweet %>
+        <% end %>
+      <% end %>
+  </div>
 
-<%= link_to 'Back', twitbots_path %>
-<%= link_to 'Edit', edit_twitbot_path %>
+  <div class="col">
+    <h3>Used</h3>
+    <% @twitbot.tweets.each do |tweet| %>
+      <% if tweet.used == true %>
+        <%= render tweet %>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col">
+    <h3>Add new tweet:</h3>
+    <%= render 'tweets/form' %>
+    <%= link_to 'Back', twitbots_path %>
+    <%= link_to 'Edit', edit_twitbot_path %>
+  </div>
+
+</div>

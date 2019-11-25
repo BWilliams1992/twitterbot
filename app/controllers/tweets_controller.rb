@@ -32,7 +32,8 @@ class TweetsController < ApplicationController
       config.access_token_secret = current_user.secret
     end
    @client.update(@tweet.content)
-
+   @tweet.used = true
+   @tweet.save
    redirect_to twitbot_path(@twitbot)
   end
 

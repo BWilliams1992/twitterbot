@@ -21,11 +21,14 @@ class TwitbotsController < ApplicationController
   def create
     @user = current_user
     @twitbot = @user.twitbots.build(twitbot_params)
+    #saves the object so the csv file is saved in active storage and is accesible
     @twitbot.save
+    #Loads the csv file into an array
+    if @twitbot.spreadsheet.attached?
+      @twitbot.spreadsheet_check.each do |item|
+        @twitbot.tweets.build(:content => item.join)
+      end
 
-    @array = CSV.read(@twitbot.spreadsheet_path)
-    @array.each do |item|
-      @twitbot.tweets.build(:content => item.join)
     end
 
     if @twitbot.save
@@ -48,6 +51,7 @@ class TwitbotsController < ApplicationController
   def destroy
     @twitbot = Twitbot.find(params[:id])
     @twitbot.destroy
+    #checks to see if the user has permisson to delete the twitterbot
     authorize! :destroy, @twitbot
     redirect_to twitbots_path
   end

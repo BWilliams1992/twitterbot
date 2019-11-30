@@ -25,16 +25,15 @@ class TweetsController < ApplicationController
   def send_tweet
     @twitbot = Twitbot.find(params[:twitbot_id])
     @tweet = Tweet.find(params[:tweet_id])
-    @client = Twitter::REST::Client.new do |config|
-      config.consumer_key        = Rails.application.credentials.twitter_api_public
-      config.consumer_secret     = Rails.application.credentials.twitter_api_secret
-      config.access_token        = current_user.token
-      config.access_token_secret = current_user.secret
-    end
-   @client.update(@tweet.content)
-   @tweet.used = true
-   @tweet.save
-   redirect_to twitbot_path(@twitbot)
+
+    @client = @twitbot.user.twitter_client
+    #sends the tweet
+    @client.update(@tweet.content)
+    #updates the tweets used status to true
+    @tweet.used = true
+    @tweet.save
+    #reloads the page
+    redirect_to twitbot_path(@twitbot)
   end
 
   def create

@@ -4,5 +4,5 @@
   <%= link_to 'Send Tweet', twitbot_tweet_send_tweet_path(tweet.twitbot.id, tweet.id) %> <br />
 <% else %>
   <strike><%= tweet.content %></strike>
-  <%= link_to 'Delete', [tweet.twitbot, tweet], method: :delete, data: { confirm: 'Are you sure?'} %>
+  <%= link_to 'Delete', [tweet.twitbot, tweet], method: :delete, data: { confirm: 'Are you sure?'} %> <br />
 <% end %>

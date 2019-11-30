@@ -29,6 +29,10 @@
     <% end %>
   </div>
 
+  <div class="col">
+    <a class="twitter-timeline" href="https://twitter.com/<%= current_user.username %>?ref_src=twsrc%5Etfw">Tweets by <%= current_user.username %></a>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </div>
 </div>
 
 <div class="row">

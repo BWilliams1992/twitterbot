@@ -27,6 +27,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find(params[:tweet_id])
 
     @client = @twitbot.user.twitter_client
+
     #sends the tweet
     @client.update(@tweet.content)
     #updates the tweets used status to true

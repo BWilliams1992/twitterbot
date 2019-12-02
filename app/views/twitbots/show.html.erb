@@ -42,5 +42,11 @@
     <%= link_to 'Back', twitbots_path %>
     <%= link_to 'Edit', edit_twitbot_path %>
   </div>
-
+  <div class="col">
+    <%= form_with model: @twitbot, local: true do |form| %>
+      <%= form.label :spreadsheet %> <br />
+      <%= form.file_field :spreadsheet %> <br />
+      <%= form.submit %>
+    <% end %>
+  </div>
 </div>

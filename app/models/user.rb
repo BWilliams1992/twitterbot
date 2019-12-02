@@ -33,9 +33,10 @@ class User < ApplicationRecord
   #generates client object for use with twitter loads the users
   #access and secret tokens along with the apps tokens
   def twitter_client
+    Dotenv.load
     @client = Twitter::REST::Client.new do |config|
-      config.consumer_key        = ENV [ 'twitter_api_key']
-      config.consumer_secret     = ENV [ 'twitter_api_secret' ]
+      config.consumer_key        = ENV[ 'twitter_api_public']
+      config.consumer_secret     = ENV[ 'twitter_api_secret' ]
       config.access_token        = self.token
       config.access_token_secret = self.secret
     end

@@ -41,6 +41,15 @@ class TwitbotsController < ApplicationController
   def update
     @twitbot = Twitbot.find(params[:id])
 
+    @twitbot.spreadsheet.attach(params[:twitbot][:spreadsheet])
+    @twitbot.save
+
+    if @twitbot.spreadsheet.attached?
+      @twitbot.spreadsheet_update_check.each do |item|
+        @twitbot.tweets.build(:content => item)
+      end
+    end
+
     if @twitbot.update(twitbot_params)
       redirect_to @twitbot
     else

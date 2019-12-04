@@ -16,21 +16,22 @@ namespace :tweets do
 
   desc "Sends a random tweet from the twitterbot that hasnt been sent before"
   task :send_tweet => :environment do
-    @twitbot = Twitbot.first
-    @unsent = @twitbot.unsent
+    @twitbots = Twitbot.all
+    @twitbots.each do |twitbot|
+      @unsent = twitbot.unsent
 
-    @selector = rand(@unsent.length)
-    @twitbot.user.twitter_client.update(@unsent[@selector].content)
+      @selector = rand(@unsent.length)
+      twitbot.user.twitter_client.update(@unsent[@selector].content)
 
-    @twitbot.tweets.each do |tweet|
-      if @unsent[@selector] == tweet
-        tweet.used = true
-        tweet.save
-      else
-        next
+      twitbot.tweets.each do |tweet|
+        if @unsent[@selector] == tweet
+          tweet.used = true
+          tweet.save
+        else
+          next
+        end
       end
     end
-
   end
 
 end

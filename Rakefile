@@ -11,7 +11,7 @@ namespace :tweets do
     @twitbot = Twitbot.first
 
     @client = @twitbot.user.twitter_client
-    @client.update("Tweeted using a rake task, my boyfriend is great")
+    @client.update("Tweeted using a rake task")
   end
 
   desc "Sends a random tweet from the twitterbot that hasnt been sent before"
